@@ -21,12 +21,17 @@ Any device within range can possibly eavesdrop on both device and obtain the boo
 
 \subsection{Buttons}
 \subsubsection{Button Enabled Device Association (BEDA)}
-The BEDA protocol ~\cite{soriente2007beda} is reliant on physical buttons on two devices.
-These buttons are integral to the protocol because it uses the duration of a pressed button which is used to generate a shared secret.
-However, this method presents a few vulnerabilities to replay attacks because hashes are not encrypted when they are sent out which lets an attacker pose as the sender by sending the hash to the original receiving device.
+The BEDA protocol ~\cite{soriente2007beda} is reliant on physical buttons present on two devices.
+These buttons are integral to the protocol because it uses the duration of the button press to generate a shared secret.
+However, this method is vulnerable to replay attacks because hashes are not encrypted when they are sent out allowing an attacker pose as the sender by sending the hash to the original receiving device.
 
 \subsection{Magnetometer Pairing}
-Magnetometer pairing is a technique of bootstrapping designed for smartphones by making use of their magnetometers and a WiFi connection. The process is started by tapping the devices, initiating with a standard Diffie-Hellman Key Exchange. During this process the devices record their magnetometer data, along with device orientation, device position, and ambient noise to create unique correlated sensor data. The protocol makes use of this correlated data to create cryptographic secrets. In order to foil eavesdroppers, the method makes use of the Interlock protocol to bolster its security against passive attacks. This method is secure against MiTM attacks because the Interlock protocol ensures that attackers will only receive half of an encrypted message of which it has no key to decrypt. The protocol is secure against Denial of Service (DoS) attacks because it is extremely difficult to overload the magnetometer readings without an abnormally large magnet.
+Magnetometer pairing is a bootstrapping technique designed for smartphones by making use of their magnetometers and a WiFi connection.
+The process is started by tapping the devices, initiating a standard Diffie-Hellman Key Exchange.
+During this process the devices record their magnetometer data, along with device orientation, device position, and ambient noise to create unique correlated sensor data.
+To foil eavesdroppers, the method makes use of the Interlock protocol to bolster its security against passive attacks.
+This method is secure against MiTM attacks because the Interlock protocol ensures that attackers will only receive half of an encrypted message of which it has no key to decrypt.
+The protocol is secure against Denial of Service (DoS) attacks because it is extremely difficult to overload the magnetometer readings without an abnormally large magnet.
 
 \subsection{Audio Pairing}
 \subsubsection{Human-Assisted Pure Audio Device Pairing (HAPADEP)}
