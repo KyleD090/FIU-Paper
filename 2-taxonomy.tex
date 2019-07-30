@@ -1,6 +1,6 @@
-\usepackage{graphicx}
-\graphicspath{ {./images/} }
-\includegraphics[scale=0.15]{pic}
+% \usepackage{graphicx}
+% \graphicspath{ {./images/} }
+% \includegraphics[scale=0.15]{pic}
 \section{Bootstrapping Taxonomy}
 
 Out-of-band (OOB) channels are auxiliary to the main frequency of communication and are used as a means to bolster security.
@@ -19,14 +19,11 @@ Any device within range can possibly eavesdrop on both device and obtain the boo
 
 %As a means for device onboarding, BLE is a viable alternative to Wifi in scenarios that do not require long range communication - not unlike an office. BLE lets a user send out a broadcast that states their intent to bootstrap with another device. The DPP requires two devices: a configurator that broadcasts intent and an enrollee within range that responds to a broadcast. When an enrollee does respond to a broadcast, the devices move to an auxiliary channel via BLE and exchange cryptographic information. One of the primary DPP characteristics is that the configurator sends out a request packet on the auxiliary channel and the enrollee must send back that same auxiliary channel request information to successfully onboard. One of the main vulnerabilities of using BLE pairing is its that broadcasts openly to any device within range. By broadcasting openly, the devices make themselves susceptible to Man in The Middle (MiTM) attacks. BLE itself does not have a proof of possession of the bootstrapping keys in the auxiliary channel. Any device within range can possibly eavesdrop on both device and obtain the bootstrapping keys.
 
-
 \subsection{Buttons}
 \subsubsection{Button Enabled Device Association (BEDA)}
 The BEDA protocol ~\cite{soriente2007beda} is reliant on physical buttons on two devices.
 These buttons are integral to the protocol because it uses the duration of a pressed button which is used to generate a shared secret.
 However, this method presents a few vulnerabilities to replay attacks because hashes are not encrypted when they are sent out which lets an attacker pose as the sender by sending the hash to the original receiving device.
-
-
 
 \subsection{Magnetometer Pairing}
 Magnetometer pairing is a technique of bootstrapping designed for smartphones by making use of their magnetometers and a WiFi connection. The process is started by tapping the devices, initiating with a standard Diffie-Hellman Key Exchange. During this process the devices record their magnetometer data, along with device orientation, device position, and ambient noise to create unique correlated sensor data. The protocol makes use of this correlated data to create cryptographic secrets. In order to foil eavesdroppers, the method makes use of the Interlock protocol to bolster its security against passive attacks. This method is secure against MiTM attacks because the Interlock protocol ensures that attackers will only receive half of an encrypted message of which it has no key to decrypt. The protocol is secure against Denial of Service (DoS) attacks because it is extremely difficult to overload the magnetometer readings without an abnormally large magnet.
